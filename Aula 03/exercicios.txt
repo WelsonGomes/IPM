@@ -1,0 +1,44 @@
+--Questão 01
+select strpos(titulo,'Harry'), titulo from biblioteca.livro
+	where strpos(titulo,'Harry') = 1
+
+
+
+--Questão 02
+select upper(nome), nome from biblioteca.cliente
+
+
+
+--Questão 03
+select nome, titulo, data
+       from biblioteca.emprestimo
+ inner join biblioteca.livro
+	     on emprestimo.codigo_livro = livro.codigo_livro
+ inner join biblioteca.cliente
+	     on cliente.codigo_cliente = emprestimo.codigo_cliente
+      where extract(month from data) = 10
+	
+
+  
+--Questão 04
+select count(*) from biblioteca.emprestimo
+	where extract(year from data) = 2021
+	
+
+	
+--Questão 05
+select livro.codigo_prateleira, count(*)
+   from biblioteca.livro
+   join biblioteca.prateleira
+     on livro.codigo_prateleira = prateleira.codigo_prateleira
+  group by livro.codigo_prateleira
+  
+
+
+--Questão 06
+select livro.codigo_prateleira, count(*)
+   from biblioteca.livro
+   join biblioteca.prateleira
+     on livro.codigo_prateleira = prateleira.codigo_prateleira
+  group by livro.codigo_prateleira
+ having count(*) > 10

@@ -1,0 +1,37 @@
+01) Selecione o nome do livro e o nome do autor de todos os livros
+	select titulo, nome 
+	  from biblioteca.livro 
+    inner join biblioteca.autor 
+	    on autor.codigo_autor = livro.codigo_autor
+
+02) Selecione o nome do livro e o codigo da prateleira de todos os livros cuja categoria seja 'F2.5 Romance & Sagas
+	 select titulo, numero 
+	   from biblioteca.livro 
+     inner join biblioteca.prateleira
+	     on prateleira.codigo_prateleira = livro.codigo_prateleira 
+	  where livro.categoria = 'F2.5  Romance & Sagas'
+
+03) Selecione o nome do cliente e o nome do livro de todos os empréstimos feitos no dia 31/08/2021’
+     select nome, titulo
+       from biblioteca.emprestimo
+ inner join biblioteca.livro
+	 on emprestimo.codigo_livro = livro.codigo_livro
+ inner join biblioteca.cliente
+	 on cliente.codigo_cliente = emprestimo.codigo_cliente
+      where emprestimo.data = '2021-08-31'
+
+04) Selecione todos os livros cuja prateleira contenha ‘A1’
+     select titulo
+       from biblioteca.livro
+ inner join biblioteca.prateleira
+	 on livro.codigo_prateleira = prateleira.codigo_prateleira
+      where prateleira.numero like '%A1%'
+
+05) Selecione o nome do livro, nome do autor de todos os livros já devolvidos
+     select titulo, nome
+       from biblioteca.emprestimo
+ inner join biblioteca.livro
+	 on livro.codigo_livro = emprestimo.codigo_livro
+ inner join biblioteca.autor
+	 on autor.codigo_autor = livro.codigo_autor
+      where emprestimo.data_devolucao is not null

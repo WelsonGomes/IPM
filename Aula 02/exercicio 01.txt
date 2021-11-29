@@ -1,0 +1,36 @@
+create table biblioteca.cliente(
+	codigo_cliente integer not null,
+	nome varchar not null,
+	situacao varchar not null,
+	constraint pk_cliente primary key (codigo_cliente)
+)
+
+create table biblioteca.livro(
+	codigo_livro integer not null,
+	titulo varchar not null,
+	exemplares integer not null,
+	codigo_prateleira integer not null,
+	codigo_autor integer not null,
+	constraint pk_livro primary key (codigo_livro)
+)
+
+create table biblioteca.autor(
+	codigo_autor integer not null,
+	nome varchar not null,
+	constraint pk_autor primary key (codigo_autor)
+)
+
+create table biblioteca.prateleira(
+	codigo_prateleira integer not null,
+	numero varchar not null,
+	constraint pk_prateleira primary key (codigo_prateleira)
+)
+
+create table biblioteca.emprestimo(
+	codigo_emprestimo integer not null,
+	data_emprestimo date not null,
+	data_devolucao date,
+	codigo_cliente integer not null,
+	codigo_livro integer not null,
+	constraint pk_emprestimo primary key (codigo_emprestimo)
+)

@@ -1,0 +1,18 @@
+select *,
+  substr(nome,1,1),
+  replace(nome, 'M', 'Z'),
+	cast(codigo_cliente as varchar)
+    from biblioteca.cliente
+
+select *,
+	extract(month from data) as mes
+	   from biblioteca.emprestimo
+	  where extract(year from data) = 2021
+ 	    and extract(month from data) = 9
+ 
+alter table biblioteca.livro add preco numeric;
+update biblioteca.livro set preco = cast(random() * 20+1 as numeric(20,5));
+select *,
+	round(preco,2),
+	trunc(preco,2)
+	from biblioteca.livro

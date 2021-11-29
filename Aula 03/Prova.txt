@@ -1,0 +1,57 @@
+--Questão 01
+select substring(nome,1,1), nome from construtora.cliente
+	where substring(nome,1,1)='D'
+	
+--Questão 02
+select * from construtora.obra
+	where extract(year from data_inicio) < 2021
+	
+--Questão 03
+select * 
+	from construtora.material
+	join construtora.classificacao
+	  on material.codigo_classificacao = classificacao.codigo_classificacao
+   where classificacao.nome = 'Material Bruto'
+	
+--Questão 04
+select * from construtora.material
+	where codigo_unidade_medida = 1
+	  and valor_unitario < 15
+	  
+--Questão 05
+select * 
+	from construtora.obra
+	join construtora.comodo_obra
+	  on obra.codigo_obra = comodo_obra.codigo_obra
+   where extract(year from data_inicio) = 2020
+	
+--Questão 06
+select obra.codigo_obra,  count(*)
+	from construtora.obra
+	join construtora.material_obra
+	  on obra.codigo_obra = material_obra.codigo_obra
+group by obra.codigo_obra
+
+--Questão 07
+select funcionario_obra.codigo_obra, count(*)
+	from construtora.funcionario_obra
+	join construtora.obra
+	  on funcionario_obra.codigo_obra = obra.codigo_obra
+group by funcionario_obra.codigo_obra
+
+--Questão 08
+select count(*) 
+	from construtora.comodo_obra
+	join construtora.obra
+	  on comodo_obra.codigo_obra = obra.codigo_obra
+group by comodo_obra.codigo_obra
+having count(*) > 3
+
+--Questão 09
+select * from construtora.pagamento
+	where extract(year from data_pagamento) = 2021
+	  and extract(month from data_pagamento) = 3
+	  
+--Questão 10
+select * from construtora.fase_obra
+	where situacao = 'F'

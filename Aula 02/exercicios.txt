@@ -1,0 +1,256 @@
+--Script para criação de tabela
+01) Criando tabelas no schemas biblioteca
+	create table biblioteca.cliente(
+		codigo_cliente integer not null,
+		nome varchar not null,
+		situacao varchar not null,
+		constraint pk_cliente primary key (codigo_cliente)
+	);
+
+	create table biblioteca.livro(
+		codigo_livro integer not null,
+		titulo varchar not null,
+		exemplares integer not null,
+		codigo_prateleira integer not null,
+		codigo_autor integer not null,
+		constraint pk_livro primary key (codigo_livro)
+	);
+
+	create table biblioteca.autor(
+		codigo_autor integer not null,
+		nome varchar not null,
+		constraint pk_autor primary key (codigo_autor)
+	);
+
+	create table biblioteca.prateleira(
+		codigo_prateleira integer not null,
+		numero varchar not null,
+		constraint pk_prateleira primary key (codigo_prateleira)
+	);
+
+	create table biblioteca.emprestimo(
+		codigo_emprestimo integer not null,
+		data_emprestimo date not null,
+		data_devolucao date,
+		codigo_cliente integer not null,
+		codigo_livro integer not null,
+		constraint pk_emprestimo primary key (codigo_emprestimo)
+	);
+
+--Script para criação de tabela
+02) Criando tabelas no schemas de contrução
+	create table construtora.cliente(
+		codigo_cliente integer not null,
+		endereco varchar not null,
+		constraint pk_cliente primary key (codigo_cliente)
+	);
+
+	create table construtora.funcionario(
+		codigo_funcionario integer not null,
+		nome varchar not null,
+		cargo varchar not null,
+		constraint pk_funcionario primary key (codigo_funcionario)
+	);
+
+	create table construtora.pagamento(
+		codigo_pagamento integer not null,
+		data_pagamento date not null,
+		valor numeric not null,
+		codigo_obra integer not null,
+		constraint pk_pagamento primary key (codigo_pagamento)
+	);
+
+	create table construtora.funcionario_obra(
+		codigo_funcionario_obra integer not null,
+		codigo_funcionario integer not null,
+		codigo_obra integer not null,
+		constraint pk_funcionario_obra primary key (codigo_funcionario_obra)
+	);
+
+	create table construtora.fase_obra(
+		codigo_fase_obra integer not null,
+		codigo_fase integer not null,
+		codigo_obra integer not null,
+		situacao varchar not null,
+		constraint pk_fase_obra primary key (codigo_fase_obra)
+	);
+
+	create table construtora.obra(
+		codigo_obra integer not null,
+		codigo_cliente integer not null,
+		endereco varchar not null,
+		valor_orcamento numeric not null,
+		data_inicio date not null,
+		constraint pk_obra primary key (codigo_obra)
+	);
+
+	create table construtora.fase(
+		codigo_fase integer not null,
+		nome varchar not null,
+		constraint pk_fase primary key (codigo_fase)
+	);
+
+	create table construtora.comodo_obra(
+		codigo_comodo_obra integer not null,
+		codigo_obra integer not null,
+		codigo_comodo integer not null,
+		tamanho numeric not null,
+		constraint pk_comodo_obra primary key (codigo_comodo_obra)
+	);
+
+	create table construtora.material_obra(
+		codigo_material_obra integer not null,
+		codigo_obra integer not null,
+		codigo_material integer not null,
+		quantidade numeric not null,
+		constraint pk_material_obra primary key (codigo_material_obra)
+	);
+
+	create table construtora.material(
+		codigo_material integer not null,
+		descricao varchar not null,
+		valor_unitario numeric not null,
+		codigo_classificacao integer not null,
+		codigo_unidade_medida integer not null,
+		constraint pk_material primary key (codigo_material)
+	);
+
+	create table construtora.classificacao(
+		codigo_classificacao integer not null,
+		nome varchar not null,
+		constraint pk_classificacao primary key (codigo_classificacao)
+	);
+
+	create table construtora.comodo(
+		codigo_comodo integer not null,
+		nome varchar not null,
+		constraint pk_comodo primary key (codigo_comodo)
+	);
+
+	create table construtora.unidade_medida(
+		codigo_unidade_medida integer not null,
+		sigla varchar not null,
+		descricao varchar not null,
+		constraint pk_unidade_medida primary key (codigo_unidade_medida)
+	);
+
+--Script para inserção de dados na tabela cliente
+03) Inserindo dados do Cliente
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (1, 'Dino da Silva Sauro', 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (2, 'Charlene da Silva Sauro', 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (3, 'Baby Sinclair', 'Desativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (4, 'Robbie Sinclair' 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (5, 'Fran da Silva Sauro' 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (6, 'Bradley Richfield' 'Desativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (7, 'Roy Hess' 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (8, 'Monica Devertebrae' 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (9, 'All Harris' 'Desativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (10, 'Howard Handupme' 'Ativo');
+	insert into biblioteca.cliente (codigo_cliente, nome, situacao) values (11, 'Grandpa Louie' 'Desativo');
+
+--Script para inserção de dados na tabela prateleira
+04) Dados da prateleira
+	insert into biblioteca.prateleira (codigo_prateleira, numero) values (1, 'A5B');
+	insert into biblioteca.prateleira (codigo_prateleira, numero) values (2, 'B7C');
+	insert into biblioteca.prateleira (codigo_prateleira, numero) values (3, 'C9A');
+
+--Script para inserção de dados na tabela autor
+05) Dados do autor
+	insert into biblioteca.autor (codigo_autor, nome) values(1, 'Tio Fester Addams');
+	insert into biblioteca.autor (codigo_autor, nome) values(2, 'Morticia Addams');
+	insert into biblioteca.autor (codigo_autor, nome) values(3, 'Vovó Addams');
+	insert into biblioteca.autor (codigo_autor, nome) values(4, 'Wandinha Addams');
+	insert into biblioteca.autor (codigo_autor, nome) values(5, 'Gomez Addams');
+
+--Script para inserção de dados na tabela livros
+06) Dados do livro
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (1, 'Banco de Dados', 3, 1, 1);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (2, 'Programação Delphi', 5, 2, 2);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (3, 'Segurança de dados', 10, 3, 3);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (4, 'Algoritmos', 5, 1, 5);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (5, 'Desenvolvimento Web', 12, 2, 4);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (6, 'Desenvolvendo com python', 3, 3, 1);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (7, 'Lógica Matemática', 9, 1, 3);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (8, 'Java para Iniciantes', 7, 3, 4);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (9, 'PHP Avançado', 10, 2, 2);
+	insert into biblioteca.livro (codigo_livro, titulo, exemplares, codigo_prateleira, codigo_autor) values (10, 'Manual PGAdmin', 22, 2, 5);
+
+--Script para inserção de dados na tabela emprestimo
+07) Dados do emprestimo
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (1, '2021-10-01', 1, 10);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (2, '2021-10-06', 2, 9);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (3, '2021-10-12', 3, 8);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (4, '2021-10-17', 4, 7);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (5, '2021-10-01', 5, 6);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (6, '2021-10-06', 6, 5);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (7, '2021-10-12', 7, 4);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (8, '2021-10-17', 8, 3);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (9, '2021-10-17', 9, 2);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (10, '2021-10-17', 10, 1);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (11, '2021-10-17', 1, 11);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (12, '2021-10-17', 2, 9);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (13, '2021-10-17', 3, 8);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (14, '2021-10-17', 4, 7);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (15, '2021-10-17', 5, 6);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (16, '2021-10-17', 6, 5);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (17, '2021-10-17', 7, 4);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (18, '2021-10-17', 8, 3);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (19, '2021-10-17', 9, 2);
+	insert into biblioteca.emprestimo (codigo_emprestimo, data_emprestimo, codigo_cliente, codigo_livro) values (20, '2021-10-17', 10, 1);
+
+--Script para atualização de dados de situação na tabela cliente
+08) Atualizando situação cliente
+	update biblioteca.cliente set situacao = 'Desativo' where codigo_cliente = 8;
+	update biblioteca.cliente set situacao = 'Ativo' where codigo_cliente = 3;
+	update biblioteca.cliente set situacao = 'Desativo' where codigo_cliente = 5;
+
+--Script para atualização de dados de devolução de livros na tabela emprestimo
+09) Atualizando data de devolução de emprestimo do livro
+	update biblioteca.emprestimo set data_devolucao = '2021-10-25' where codigo_cliente = 4;
+	update biblioteca.emprestimo set data_devolucao = '2021-10-29' where codigo_cliente = 9;
+	update biblioteca.emprestimo set data_devolucao = '2021-11-07' where codigo_cliente = 17;
+
+--Script para atualização de dados da prateleira de livros na tabela prateleira
+10) Atualizando codigo prateleira dos livros
+	update biblioteca.prateleira set numero = 'F25A' where codigo_prateleira = 1;
+	update biblioteca.prateleira set numero = 'Z42C' where codigo_prateleira = 3;
+
+--Script para retornar os nomes dos clientes
+11) Retorna apenas o nome dos clientes
+	select nome from biblioteca.cliente;
+
+--Script para retornar os livros conforme categoria pedida
+12) Seleciona na tabela de livros os livros com categoria 'F2.1  Crime, Thriller & Adventure'
+	select * from biblioteca.livro where categoria like 'F2.1  Crime, Thriller & Adventure'
+
+--Script para retornar os livros de um autor expecífico
+13) Retorna os livros do autor "Rowling, J.K.	"
+	select * from biblioteca.livro where codigo_autor = 52
+
+--Script para retornar todos os clientes que iniciam com a letra M
+14) Retorna todos os clientes que iniciam com a letra M
+	select * from biblioteca.cliente where nome like 'M%'
+
+--Script para retornar os emprestimos com data de entrega Nulo
+15) Retorna os emprestimos com data de entrega Nulo
+	select * from biblioteca.emprestimo where data_devolucao is null
+
+--Script para retornar os emprestimos de um livro expecífico
+16)Retorna todos os emprestimos do livro "Harry Potter and the Chamber of Secrets"
+	select * from biblioteca.emprestimo where codigo_cliente = 7
+
+--Script para retornar os emprestimos de um livro por sua data de emprestimo
+17) Retorna os emprestimos da data 03/04/2021
+	select * from biblioteca.emprestimo where data = '2021-04-03'
+
+--Script para retornar todos os emprestimos do cliente Anthony
+18) Retorna todos os emprestimos do cliente Anthony
+	select * from biblioteca.emprestimo where codigo_cliente = 50
+
+--Script para retornar todos os livros devolvido em uma data expecífica
+19) Retorna todos os livros devolvido em uma data expecífica
+	select * from biblioteca.emprestimo where data_devolucao = '2021-07-08'
+
+--Script para retornar todos os livros que contenham o titulo Harry Potter
+20) Retorna todos os livros que contenham o titulo Harry Potter
+	select * from biblioteca.livro where titulo like '%Harry Potter%'
