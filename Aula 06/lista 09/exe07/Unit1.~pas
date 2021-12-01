@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, DB, DBClient, Grids, DBGrids, XPMan;
+  Dialogs, StdCtrls, DB, DBClient, Grids, DBGrids;
 
 type
   TForm1 = class(TForm)
@@ -14,7 +14,6 @@ type
     ds1: TDataSource;
     ds2: TClientDataSet;
     lbl1: TLabel;
-    xpmnfst1: TXPManifest;
     procedure btnOkClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private

@@ -98,8 +98,4 @@ object Form1: TForm1
     Left = 80
     Top = 368
   end
-  object xpmnfst1: TXPManifest
-    Left = 112
-    Top = 368
-  end
 end
